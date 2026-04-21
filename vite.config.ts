@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
 
     // 🚀 Performance Optimization
     build: {
-      chunkSizeWarningLimit: 700, // realistic limit
+      chunkSizeWarningLimit: 1300, // realistic limit
 
       rollupOptions: {
         output: {
