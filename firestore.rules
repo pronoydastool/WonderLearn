@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+    function isValidUser() {
+      let data = request.resource.data;
+      return hasOnlyAllowedFields(['userId', 'name', 'ageGroup', 'nativeLanguage', 'createdAt', 'parentalPin', 'screenTimeLimit', 'disabledModules']) &&
+             hasRequiredFields(['userId', 'name', 'ageGroup', 'nativeLanguage', 'createdAt']) &&
+             data.userId == request.auth.uid &&
+             data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.ageGroup in ['3-5', '6-8', '9-12'] &&
+             data.nativeLanguage is string && data.nativeLanguage.size() > 0 && data.nativeLanguage.size() < 50 &&
+             data.createdAt is string &&
+             ( !('parentalPin' in data) || data.parentalPin == null || (data.parentalPin is string && data.parentalPin.size() <= 4) ) &&
+             ( !('screenTimeLimit' in data) || data.screenTimeLimit == null || data.screenTimeLimit is number ) &&
+             ( !('disabledModules' in data) || data.disabledModules is list );
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUser();
+      allow update: if isOwner(userId) && isValidUser() && request.resource.data.userId == resource.data.userId && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isOwner(userId);
+    }
+  }
+}

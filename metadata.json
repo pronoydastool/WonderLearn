@@ -1,0 +1,7 @@
+{
+  "name": "WonderLearn: Kids Ultimate App",
+  "description": "An all-in-one educational platform for kids featuring interactive learning, games, creativity tools, stories, and an AI tutor.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

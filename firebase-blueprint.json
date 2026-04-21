@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile data for the child/student.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The unique user ID from Firebase Auth."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the child."
+        },
+        "ageGroup": {
+          "type": "string",
+          "description": "The age group of the child.",
+          "enum": ["3-5", "6-8", "9-12"]
+        },
+        "nativeLanguage": {
+          "type": "string",
+          "description": "Native language of the child."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "name", "ageGroup", "nativeLanguage", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Stores user profile configurations."
+    }
+  }
+}
