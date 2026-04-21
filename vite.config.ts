@@ -3,9 +3,6 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 
-// ✅ Bundle analyzer (optional but powerful)
-import { visualizer } from 'rollup-plugin-visualizer';
-
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
 
@@ -13,13 +10,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       tailwindcss(),
-
-      // 🔍 Bundle size check (auto open report)
-      visualizer({
-        open: true,
-        gzipSize: true,
-        brotliSize: true,
-      }),
     ],
 
     define: {
@@ -36,14 +26,15 @@ export default defineConfig(({ mode }) => {
       hmr: process.env.DISABLE_HMR !== 'true',
     },
 
-    // 🚀 🔥 MAIN OPTIMIZATION PART
+    // 🚀 Performance Optimization
     build: {
-      chunkSizeWarningLimit: 600, // ⚠️ realistic limit
+      chunkSizeWarningLimit: 700, // realistic limit
 
       rollupOptions: {
         output: {
           manualChunks(id) {
-            // 📦 Node modules splitting
+
+            // 📦 Split node_modules
             if (id.includes('node_modules')) {
 
               if (id.includes('react')) {
@@ -62,6 +53,7 @@ export default defineConfig(({ mode }) => {
                 return 'motion';
               }
 
+              // fallback
               return 'vendor';
             }
           }
