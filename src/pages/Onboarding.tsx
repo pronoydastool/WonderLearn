@@ -158,10 +158,10 @@ export default function Onboarding() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4 w-full max-w-sm px-4">
+        <div className="flex flex-col gap-4 w-full max-w-sm px-4 relative z-10">
           <button 
             onClick={() => setStep(step + 1)}
-            className="w-full bg-white text-indigo-600 font-bold py-5 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all w-full items-center justify-center text-lg"
+            className="w-full bg-white text-indigo-600 font-bold py-5 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center text-lg"
           >
             {step === INTRO_SCREENS.length - 1 ? "Get Started" : "Next"}
           </button>
@@ -326,8 +326,8 @@ export default function Onboarding() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-sky-400 to-emerald-400 flex flex-col items-center justify-center p-6 relative overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
-      <div className="absolute bottom-10 right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
       
       <AnimatePresence mode="wait">
         {step < INTRO_SCREENS.length ? renderIntroScreens() : renderAuthScreen()}
