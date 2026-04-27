@@ -97,14 +97,14 @@ export default function Colors() {
               {currentColor.name}
             </h2>
 
-            <div className="flex items-center gap-4 md:gap-8 w-full justify-center">
-              <button onClick={handlePrev} disabled={currentIndex === 0} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center disabled:opacity-50 hover:bg-slate-200 transition-colors">
+            <div className="flex items-center justify-between w-full max-w-sm mx-auto px-4 mt-8">
+              <button onClick={handlePrev} disabled={currentIndex === 0} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center disabled:opacity-50 hover:bg-slate-200 transition-colors active:scale-95 touch-manipulation">
                 <ArrowLeft className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
               </button>
-              <button onClick={() => playSound(currentColor.name)} className="w-20 h-20 md:w-24 md:h-24 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors shadow-lg shadow-blue-200">
+              <button onClick={() => playSound(currentColor.name)} className="w-20 h-20 md:w-24 md:h-24 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors shadow-lg shadow-blue-200 active:scale-95 touch-manipulation">
                 <Volume2 className="w-10 h-10 md:w-12 md:h-12 text-white" />
               </button>
-              <button onClick={handleNext} className="w-16 h-16 md:w-20 md:h-20 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors shadow-lg shadow-green-200">
+              <button onClick={handleNext} className="w-16 h-16 md:w-20 md:h-20 bg-green-500 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors shadow-lg shadow-green-200 active:scale-95 touch-manipulation">
                 <ArrowLeft className="w-8 h-8 md:w-10 md:h-10 text-white rotate-180" />
               </button>
             </div>

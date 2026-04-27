@@ -119,14 +119,14 @@ export default function StoryReader() {
               {page.text}
             </h2>
 
-            <div className="flex items-center gap-4 md:gap-8 w-full justify-center mt-auto">
-              <button onClick={handlePrev} disabled={currentPage === 0} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center disabled:opacity-50 hover:bg-slate-200 transition-colors">
+            <div className="flex items-center justify-between w-full max-w-sm mx-auto px-4 mt-auto">
+              <button onClick={handlePrev} disabled={currentPage === 0} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center disabled:opacity-50 hover:bg-slate-200 transition-colors active:scale-95 touch-manipulation">
                 <ChevronLeft className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
               </button>
-              <button onClick={() => playSound(page.text)} className={`w-20 h-20 md:w-24 md:h-24 ${story.color} rounded-full flex items-center justify-center hover:opacity-90 transition-opacity shadow-lg`}>
+              <button onClick={() => playSound(page.text)} className={`w-20 h-20 md:w-24 md:h-24 ${story.color} rounded-full flex items-center justify-center hover:opacity-90 transition-opacity shadow-lg active:scale-95 touch-manipulation`}>
                 <Volume2 className="w-10 h-10 md:w-12 md:h-12 text-white" />
               </button>
-              <button onClick={handleNext} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center hover:bg-slate-200 transition-colors">
+              <button onClick={handleNext} className="w-16 h-16 md:w-20 md:h-20 bg-slate-100 rounded-full flex items-center justify-center hover:bg-slate-200 transition-colors active:scale-95 touch-manipulation">
                 <ChevronRight className="w-8 h-8 md:w-10 md:h-10 text-slate-600" />
               </button>
             </div>

@@ -158,17 +158,17 @@ export default function Onboarding() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-4 w-full max-w-xs">
+        <div className="flex flex-col gap-4 w-full max-w-sm px-4">
           <button 
             onClick={() => setStep(step + 1)}
-            className="w-full bg-white text-indigo-600 font-bold py-4 rounded-2xl shadow-lg hover:scale-105 transition-transform"
+            className="w-full bg-white text-indigo-600 font-bold py-5 rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all w-full items-center justify-center text-lg"
           >
             {step === INTRO_SCREENS.length - 1 ? "Get Started" : "Next"}
           </button>
           
           <button 
             onClick={() => setStep(4)}
-            className="w-full text-white/80 font-medium py-2 hover:text-white transition-colors"
+            className="w-full text-white/80 font-medium py-4 hover:text-white transition-colors active:bg-white/10 rounded-xl"
           >
             Skip
           </button>
